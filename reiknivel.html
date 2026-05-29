@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reiknivél — Kann ehf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0D1420;
+      color: #C0C8D8;
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .calc-input {
+      background: rgba(13,20,32,0.8);
+      border: 1px solid #1A4B8C;
+      color: #C0C8D8;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      padding: 0.625rem 0.875rem;
+      border-radius: 4px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .calc-input:focus { border-color: #4A90D9; box-shadow: 0 0 0 3px rgba(74,144,217,0.12); }
+    .calc-input::placeholder { color: #3A4050; }
+    select.calc-input option { background: #111827; color: #C0C8D8; }
+
+    .calc-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #4A90D9;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .price-display {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .rule {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(74,144,217,0.4) 0%, transparent 100%);
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div style="width:100%;max-width:900px;">
+
+    <!-- Header -->
+    <div style="margin-bottom:2.5rem;">
+      <div style="font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E8803A;margin-bottom:0.5rem;">Áætlaður kostnaður</div>
+      <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2.5rem;color:#FFFFFF;letter-spacing:0.04em;text-transform:uppercase;">REIKNIVÉL</h1>
+      <div class="rule" style="width:80px;margin-top:1rem;"></div>
+      <p style="font-size:0.9rem;color:#6C7386;line-height:1.7;margin-top:1rem;max-width:520px;">Sláðu inn upplýsingar um verkið til að fá áætlun á kostnaði. Endanlegt verð er samkvæmt tilboði.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+      <!-- Inputs -->
+      <div style="background:rgba(13,20,32,0.7);border:1px solid rgba(45,108,192,0.2);border-radius:8px;padding:2.5rem;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#4A90D9;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(45,108,192,0.15);">Upplýsingar um verkið</div>
+
+        <div class="flex flex-col gap-6">
+
+          <!-- Distance -->
+          <div>
+            <label class="calc-label" for="distance">Akstursfjarlægð frá Reykjavík</label>
+            <div style="position:relative;">
+              <input id="distance" type="number" class="calc-input" placeholder="0" min="0" step="1" oninput="calculate()" />
+              <div style="position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);font-family:'Barlow',sans-serif;font-size:0.8rem;color:#4A5060;pointer-events:none;">km</div>
+            </div>
+          </div>
+
+          <!-- Depth -->
+          <div>
+            <label class="calc-label" for="depth">Dýpt Borholu/myndunar</label>
+            <div style="position:relative;">
+              <input id="depth" type="number" class="calc-input" placeholder="0" min="0" step="1" oninput="calculate()" />
+              <div style="position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);font-family:'Barlow',sans-serif;font-size:0.8rem;color:#4A5060;pointer-events:none;">m</div>
+            </div>
+          </div>
+
+          <!-- Well type -->
+          <div>
+            <label class="calc-label" for="welltype">Tegund Borholu</label>
+            <select id="welltype" class="calc-input" onchange="calculate()">
+              <option value="fresh">Ferskvatn</option>
+              <option value="hot">Heitt vatn</option>
+            </select>
+          </div>
+
+          <!-- Accessibility -->
+          <div>
+            <label class="calc-label" for="access">Aðkoma</label>
+            <select id="access" class="calc-input" onchange="calculate()">
+              <option value="good">Góð — við þjóðveg</option>
+              <option value="fair">Meðal — fólksbílafært</option>
+              <option value="bad">Léleg — þarfnast jeppa</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+
+        <!-- Main price -->
+        <div style="background:linear-gradient(135deg,rgba(26,75,140,0.3) 0%,rgba(13,20,32,0.9) 100%);border:1px solid rgba(74,144,217,0.3);border-radius:8px;padding:2.5rem;flex:1;">
+          <div style="font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E8803A;margin-bottom:0.75rem;">Áætlað heildarverð</div>
+          <div id="total-price" class="price-display" style="font-size:clamp(2.5rem,5vw,3.5rem);margin-bottom:0.5rem;">— kr.</div>
+          <div style="font-size:0.8rem;color:#4A5060;">Án VSK · Áætlunarverð</div>
+
+          <div class="rule mt-6 mb-6"></div>
+
+          <!-- Breakdown -->
+          <div class="flex flex-col gap-3" id="breakdown" style="opacity:0.4;">
+            <div class="flex justify-between" style="font-size:0.85rem;">
+              <span style="color:#5A6070;font-family:'Barlow',sans-serif;">Verkfæragjald</span>
+              <span id="b-fixed" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;color:#8A94A8;">85.000 kr.</span>
+            </div>
+            <div class="flex justify-between" style="font-size:0.85rem;">
+              <span style="color:#5A6070;font-family:'Barlow',sans-serif;">Akstur (<span id="b-km-dist">0</span> km × 144 kr.)</span>
+              <span id="b-km" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;color:#8A94A8;">0 kr.</span>
+            </div>
+            <div class="flex justify-between" style="font-size:0.85rem;">
+              <span style="color:#5A6070;font-family:'Barlow',sans-serif;">Tímakostnaður (<span id="b-hours">0,0</span> klst.)</span>
+              <span id="b-time" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;color:#8A94A8;">0 kr.</span>
+            </div>
+            <div class="flex justify-between" style="font-size:0.85rem;display:none;" id="b-perdiem-row">
+              <span style="color:#5A6070;font-family:'Barlow',sans-serif;">Fæði og gisting (<span id="b-perdiem-nights">0</span> nótt × 39.700 kr.)</span>
+              <span id="b-perdiem" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;color:#8A94A8;">0 kr.</span>
+            </div>
+            <div class="flex justify-between" style="font-size:0.85rem;display:none;" id="b-mult-row">
+              <span style="color:#5A6070;font-family:'Barlow',sans-serif;">Heitt vatn álag</span>
+              <span id="b-mult" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;color:#E8803A;">+0 kr.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Time breakdown -->
+        <div style="background:rgba(13,20,32,0.7);border:1px solid rgba(45,108,192,0.12);border-radius:8px;padding:1.5rem;">
+          <div style="font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#4A5060;margin-bottom:1rem;">Tímagreining</div>
+          <div class="grid grid-cols-3 gap-4">
+            <div>
+              <div id="t-drive" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.4rem;color:#4A90D9;">—</div>
+              <div style="font-size:0.75rem;color:#3A4050;letter-spacing:0.05em;margin-top:2px;">Akstur</div>
+            </div>
+            <div>
+              <div id="t-well" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.4rem;color:#4A90D9;">—</div>
+              <div style="font-size:0.75rem;color:#3A4050;letter-spacing:0.05em;margin-top:2px;">Vinna við holu</div>
+            </div>
+            <div>
+              <div id="t-access" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.4rem;color:#4A90D9;">—</div>
+              <div style="font-size:0.75rem;color:#3A4050;letter-spacing:0.05em;margin-top:2px;">Samtals (reikn.)</div>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:0.75rem;color:#3A4050;line-height:1.6;">* Þetta er eingöngu áætlun. Endanlegt verð getur breyst eftir frekari skoðun og samningum. Hafðu samband til að fá formlegt tilboð.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function fmt(n) {
+      return Math.round(n).toLocaleString('is-IS') + ' kr.';
+    }
+    function fmtH(h) {
+      if (isNaN(h) || h === 0) return '—';
+      const hrs  = Math.floor(h);
+      const mins = Math.round((h - hrs) * 60);
+      if (hrs === 0) return mins + ' mín';
+      if (mins === 0) return hrs + ' klst';
+      return hrs + ' klst ' + mins + ' mín';
+    }
+
+    function calculate() {
+      const distRaw  = parseFloat(document.getElementById('distance').value) || 0;
+      const depthRaw = parseFloat(document.getElementById('depth').value)    || 0;
+      const wType    = document.getElementById('welltype').value;
+      const access   = document.getElementById('access').value;
+
+      if (distRaw === 0 && depthRaw === 0) {
+        document.getElementById('total-price').textContent = '— kr.';
+        document.getElementById('breakdown').style.opacity = '0.4';
+        document.getElementById('t-drive').textContent  = '—';
+        document.getElementById('t-well').textContent   = '—';
+        document.getElementById('t-access').textContent = '—';
+        return;
+      }
+
+      const totalDist  = distRaw * 2;
+      const driveTime  = totalDist / 80;
+
+      const wellTravel = (depthRaw * 4.3 * 2) / 3600;
+      const wellStops  = (Math.floor(depthRaw / 50) * 5 * 2) / 60;
+      const wellTime   = wellTravel + wellStops;
+
+      const accessTime = access === 'good' ? 2 : access === 'fair' ? 3 : 4;
+      const workTime   = wellTime + accessTime;
+
+      const rawTotal      = driveTime + workTime;
+      const billableTotal = rawTotal > 12 ? Math.max(16, rawTotal) : rawTotal;
+      const billableWork  = billableTotal - driveTime;
+
+      const longTrip     = driveTime > 9;
+      const driveRate    = longTrip ? 7800 : 13000;
+      const nonDriveRate = 13000;
+
+      const distCost      = totalDist * 144;
+      const driveTimeCost = driveTime * driveRate;
+      const workTimeCost  = billableWork * nonDriveRate;
+      const timeCost      = driveTimeCost + workTimeCost;
+
+      const nights      = longTrip ? Math.max(1, Math.ceil(billableTotal / 24)) : 0;
+      const perDiemCost = nights * 39700;
+
+      const fixedCost = 85000;
+      const hotCost   = wType === 'hot' ? 35000 : 0;
+
+      const total = distCost + timeCost + perDiemCost + fixedCost + hotCost;
+
+      document.getElementById('total-price').textContent = fmt(total);
+      document.getElementById('breakdown').style.opacity = '1';
+
+      document.getElementById('b-km-dist').textContent  = totalDist.toLocaleString('is-IS');
+      document.getElementById('b-km').textContent       = fmt(distCost);
+      document.getElementById('b-hours').textContent    = billableTotal.toFixed(1).replace('.', ',');
+      document.getElementById('b-time').textContent     = fmt(timeCost);
+
+      const multRow = document.getElementById('b-mult-row');
+      if (wType === 'hot') {
+        multRow.style.display = 'flex';
+        document.getElementById('b-mult').textContent = '+' + fmt(hotCost);
+      } else {
+        multRow.style.display = 'none';
+      }
+
+      const perDiemRow = document.getElementById('b-perdiem-row');
+      if (longTrip) {
+        perDiemRow.style.display = 'flex';
+        document.getElementById('b-perdiem').textContent = fmt(perDiemCost);
+        document.getElementById('b-perdiem-nights').textContent = nights;
+      } else {
+        perDiemRow.style.display = 'none';
+      }
+
+      document.getElementById('t-drive').textContent  = fmtH(driveTime);
+      document.getElementById('t-well').textContent   = fmtH(workTime);
+      document.getElementById('t-access').textContent = fmtH(billableTotal);
+    }
+  </script>
+</body>
+</html>

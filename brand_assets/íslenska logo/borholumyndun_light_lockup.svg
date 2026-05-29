@@ -1,0 +1,30 @@
+<svg width="540" height="120" viewBox="0 0 540 120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="540" height="120" fill="#F5F7FA"/>
+  <defs>
+    <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="4" stroke="#C8D8E8" stroke-width="0.9"/>
+    </pattern>
+  </defs>
+  <g transform="translate(52,60)">
+    <circle cx="0" cy="0" r="44" fill="url(#hatch)" stroke="#2D6CC0" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="44" fill="none" stroke="#1A4B8C" stroke-width="0.5" opacity="0.3"/>
+    <circle cx="0" cy="0" r="29" fill="none" stroke="#2D6CC0" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="14" fill="#F5F7FA" stroke="#1A4B8C" stroke-width="2"/>
+    <line x1="0" y1="-44" x2="0" y2="-29" stroke="#2D6CC0" stroke-width="1.5"/>
+    <line x1="0" y1="29"  x2="0" y2="44"  stroke="#2D6CC0" stroke-width="1.5"/>
+    <line x1="29"  y1="0" x2="44"  y2="0" stroke="#2D6CC0" stroke-width="1.5"/>
+    <line x1="-44" y1="0" x2="-29" y2="0" stroke="#2D6CC0" stroke-width="1.5"/>
+    <polygon points="0,-44 5,-33 0,-29 -5,-33" fill="#E8803A"/>
+    <polygon points="0,44 5,33 0,29 -5,33"     fill="#E8803A"/>
+    <polygon points="-44,0 -33,-5 -29,0 -33,5" fill="#E8803A"/>
+    <polygon points="44,0 33,-5 29,0 33,5"      fill="#E8803A"/>
+    <circle cx="0" cy="0" r="5" fill="#E8803A"/>
+    <circle cx="0" cy="0" r="2" fill="#F5F7FA"/>
+  </g>
+  <line x1="110" y1="20" x2="110" y2="100" stroke="#2D6CC0" stroke-width="1" opacity="0.4"/>
+  <text x="126" y="44" font-family="Arial, sans-serif" font-weight="700" font-size="28" fill="#1A4B8C" letter-spacing="2">BORHOLU</text>
+  <text x="126" y="72" font-family="Arial, sans-serif" font-weight="300" font-size="28" fill="#4A4E57" letter-spacing="2">MYNDUN</text>
+  <line x1="126" y1="80" x2="510" y2="80" stroke="#2D6CC0" stroke-width="0.8" opacity="0.4"/>
+  <text x="126" y="93" font-family="Arial, sans-serif" font-size="9" fill="#E8803A" letter-spacing="3">BORHOLURANNSÓKNIR</text>
+  <text x="126" y="106" font-family="Arial, sans-serif" font-size="9" fill="#7A7E87" letter-spacing="3">MÆLINGAR · GREININGAR</text>
+</svg>
