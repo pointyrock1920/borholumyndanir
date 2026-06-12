@@ -218,6 +218,13 @@
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:1.5rem;color:#C0C8D8;letter-spacing:0.12em;line-height:1.1;">MYNDUN</div>
         </div>
       </a>
+      <!-- Mobile hamburger -->
+      <button id="menu-btn" onclick="toggleMenu()" class="md:hidden" style="display:flex;flex-direction:column;gap:5px;padding:6px;background:transparent;border:none;cursor:pointer;" aria-label="Valmynd">
+        <span class="ham-line" style="display:block;width:22px;height:2px;background:#8A94A8;border-radius:2px;transition:transform 0.2s,opacity 0.2s;"></span>
+        <span class="ham-line" style="display:block;width:22px;height:2px;background:#8A94A8;border-radius:2px;transition:transform 0.2s,opacity 0.2s;"></span>
+        <span class="ham-line" style="display:block;width:22px;height:2px;background:#8A94A8;border-radius:2px;transition:transform 0.2s,opacity 0.2s;"></span>
+      </button>
+
       <!-- Nav links -->
       <div class="hidden md:flex items-center gap-8">
         <a href="#þjonusta" style="font-family:'Barlow',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:#8A94A8;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#8A94A8'" onfocus="this.style.color='#4A90D9'" onblur="this.style.color='#8A94A8'">Þjónusta</a>
@@ -229,6 +236,25 @@
       </div>
     </div>
   </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" style="display:none;position:fixed;top:80px;left:0;right:0;z-index:49;background:rgba(13,20,32,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(45,108,192,0.2);padding:1.25rem 1.5rem;">
+    <div style="display:flex;flex-direction:column;gap:1.25rem;">
+      <a href="#þjonusta" onclick="toggleMenu()" style="font-family:'Barlow',sans-serif;font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;color:#8A94A8;text-decoration:none;">Þjónusta</a>
+      <a href="#verdskra" onclick="toggleMenu()" style="font-family:'Barlow',sans-serif;font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;color:#8A94A8;text-decoration:none;">Verðskrá</a>
+      <a href="#hafasamband" onclick="toggleMenu()" class="btn-primary" style="padding:0.6rem 1.25rem;font-size:0.85rem;text-align:center;">Hafa samband</a>
+      <a href="index-light.html" style="display:flex;align-items:center;gap:0.5rem;font-family:'Barlow',sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#8A94A8;text-decoration:none;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.4"/><line x1="8" y1="1" x2="8" y2="3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="8" y1="13" x2="8" y2="15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="1" y1="8" x2="3" y2="8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="13" y1="8" x2="15" y2="8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="2.93" y1="2.93" x2="4.34" y2="4.34" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="11.66" y1="11.66" x2="13.07" y2="13.07" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="11.66" y1="4.34" x2="13.07" y2="2.93" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="2.93" y1="13.07" x2="4.34" y2="11.66" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Ljóst þema
+      </a>
+    </div>
+  </div>
+  <script>
+    function toggleMenu() {
+      const m = document.getElementById('mobile-menu');
+      m.style.display = m.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
 
   <!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
   <section class="relative min-h-screen flex items-center" style="background:linear-gradient(160deg,#0D1420 0%,#111827 40%,#1C2230 100%);">
