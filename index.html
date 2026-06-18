@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Borholumyndun — Borholurannsóknir á Íslandi</title>
+  <title>Borholur — Myndun og mælingar</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,14 +13,8 @@
       theme: {
         extend: {
           colors: {
-            navy:   '#111827',
-            slate:  '#1C2230',
-            deep:   '#0D1420',
             blue:   { DEFAULT: '#2D6CC0', bright: '#4A90D9', dark: '#1A4B8C', mid: '#3A6FA8' },
             orange: { DEFAULT: '#E8803A', light: '#F2A060' },
-            steel:  '#253048',
-            muted:  '#4A5060',
-            dim:    '#2A3040',
           },
           fontFamily: {
             condensed: ['"Barlow Condensed"', 'sans-serif'],
@@ -33,24 +27,18 @@
   <style>
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { background: #1C2230; color: #C0C8D8; font-family: 'Barlow', sans-serif; }
+    body { background: #F2F5FA; color: #374558; font-family: 'Barlow', sans-serif; }
 
-    /* Grain texture overlay */
     body::before {
       content: '';
       position: fixed; inset: 0; pointer-events: none; z-index: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
       background-size: 256px 256px;
-      opacity: 0.35;
+      opacity: 0.18;
     }
 
-    /* Hatch pattern for logo */
-    .logo-inline svg { display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(45,108,192,0.12); }
 
-    /* Nav */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(17,24,39,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(45,108,192,0.15); }
-
-    /* Section titles */
     .section-label {
       font-family: 'Barlow', sans-serif;
       font-size: 10px;
@@ -62,7 +50,7 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
       font-size: clamp(2rem, 5vw, 3.5rem);
-      color: #FFFFFF;
+      color: #0D1420;
       letter-spacing: 0.04em;
       line-height: 1.05;
     }
@@ -71,17 +59,15 @@
       font-weight: 300;
       font-size: 1.05rem;
       line-height: 1.75;
-      color: #8A94A8;
+      color: #5A6A80;
     }
 
-    /* Horizontal rule with brand color */
-    .rule { height: 1px; background: linear-gradient(90deg, #1A4B8C 0%, #4A90D9 40%, transparent 100%); }
+    .rule { height: 1px; background: linear-gradient(90deg, #2D6CC0 0%, #4A90D9 40%, transparent 100%); }
 
-    /* Hero scan-line animation */
     @keyframes scan {
       0%   { transform: translateY(-100%); opacity: 0; }
-      10%  { opacity: 0.7; }
-      90%  { opacity: 0.7; }
+      10%  { opacity: 0.4; }
+      90%  { opacity: 0.4; }
       100% { transform: translateY(100vh); opacity: 0; }
     }
     .scan-line {
@@ -91,21 +77,16 @@
       pointer-events: none;
     }
 
-    .mark-outer {}
-    .mark-inner {}
-
-    /* Depth pulse */
     @keyframes pulse-ring {
       0%, 100% { opacity: 0.15; transform: scale(1); }
       50%       { opacity: 0.5;  transform: scale(1.05); }
     }
     .pulse-ring { animation: pulse-ring 3s ease-in-out infinite; transform-origin: center; }
 
-    /* Calculator */
     .calc-input {
-      background: rgba(13,20,32,0.8);
-      border: 1px solid #1A4B8C;
-      color: #C0C8D8;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid #B8CCE0;
+      color: #2A3A50;
       font-family: 'Barlow', sans-serif;
       font-size: 1rem;
       padding: 0.625rem 0.875rem;
@@ -115,8 +96,8 @@
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     .calc-input:focus { border-color: #4A90D9; box-shadow: 0 0 0 3px rgba(74,144,217,0.12); }
-    .calc-input::placeholder { color: #3A4050; }
-    select.calc-input option { background: #111827; color: #C0C8D8; }
+    .calc-input::placeholder { color: #A8B4C4; }
+    select.calc-input option { background: #FFFFFF; color: #2A3A50; }
     .calc-label {
       font-family: 'Barlow', sans-serif;
       font-size: 0.8rem;
@@ -127,10 +108,9 @@
       display: block;
     }
 
-    /* Service cards */
     .service-card {
-      background: linear-gradient(135deg, rgba(26,75,140,0.08) 0%, rgba(13,20,32,0.6) 100%);
-      border: 1px solid rgba(45,108,192,0.18);
+      background: linear-gradient(135deg, rgba(74,144,217,0.04) 0%, rgba(255,255,255,1) 100%);
+      border: 1px solid rgba(45,108,192,0.15);
       border-radius: 6px;
       padding: 2rem 1.5rem;
       position: relative;
@@ -147,7 +127,6 @@
     }
     .service-card:hover::before { opacity: 1; }
 
-    /* CTA button */
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: #2D6CC0;
@@ -164,21 +143,16 @@
       cursor: pointer;
       text-decoration: none;
     }
-    .btn-primary:hover { background: #4A90D9; box-shadow: 0 0 24px rgba(74,144,217,0.3); transform: translateY(-1px); }
+    .btn-primary:hover { background: #4A90D9; box-shadow: 0 0 24px rgba(74,144,217,0.25); transform: translateY(-1px); }
     .btn-primary:active { transform: translateY(0); }
     .btn-primary:focus-visible { outline: 2px solid #4A90D9; outline-offset: 3px; }
 
-    /* Divider arrow */
-    .divider-arrow { color: #E8803A; opacity: 0.4; }
-
-    /* Number display */
     .price-display {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
-      color: #FFFFFF;
+      color: #0D1420;
     }
 
-    /* Scroll reveal */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
@@ -188,19 +162,18 @@
   <!-- ═══ NAV ═══════════════════════════════════════════════════════════════ -->
   <nav>
     <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-20">
-      <!-- Logo lockup (inline) -->
       <a href="#" class="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-bright rounded">
         <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="nh" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-              <line x1="0" y1="0" x2="0" y2="4" stroke="#253048" stroke-width="0.9"/>
+              <line x1="0" y1="0" x2="0" y2="4" stroke="#C8D4E8" stroke-width="0.9"/>
             </pattern>
           </defs>
           <g transform="translate(50,50)">
-            <circle class="mark-outer" cx="0" cy="0" r="44" fill="url(#nh)" stroke="#2D6CC0" stroke-width="2.5"/>
+            <circle cx="0" cy="0" r="44" fill="url(#nh)" stroke="#2D6CC0" stroke-width="2.5"/>
             <circle cx="0" cy="0" r="44" fill="none" stroke="#4A90D9" stroke-width="0.5" opacity="0.3"/>
-            <circle class="mark-inner" cx="0" cy="0" r="29" fill="none" stroke="#1A4B8C" stroke-width="1.5"/>
-            <circle cx="0" cy="0" r="14" fill="#1C2230" stroke="#4A90D9" stroke-width="2"/>
+            <circle cx="0" cy="0" r="29" fill="none" stroke="#1A4B8C" stroke-width="1.5"/>
+            <circle cx="0" cy="0" r="14" fill="#F2F5FA" stroke="#4A90D9" stroke-width="2"/>
             <line x1="0" y1="-44" x2="0" y2="-29" stroke="#4A90D9" stroke-width="1.5"/>
             <line x1="0" y1="29"  x2="0" y2="44"  stroke="#4A90D9" stroke-width="1.5"/>
             <line x1="29"  y1="0" x2="44"  y2="0" stroke="#4A90D9" stroke-width="1.5"/>
@@ -210,60 +183,27 @@
             <polygon points="-44,0 -33,-5 -29,0 -33,5" fill="#E8803A"/>
             <polygon points="44,0 33,-5 29,0 33,5"      fill="#E8803A"/>
             <circle cx="0" cy="0" r="5" fill="#E8803A"/>
-            <circle cx="0" cy="0" r="2" fill="#1C2230"/>
+            <circle cx="0" cy="0" r="2" fill="#F2F5FA"/>
           </g>
         </svg>
         <div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.5rem;color:#4A90D9;letter-spacing:0.12em;line-height:1.1;">BORHOLU</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:1.5rem;color:#C0C8D8;letter-spacing:0.12em;line-height:1.1;">MYNDUN</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.5rem;color:#2D6CC0;letter-spacing:0.08em;line-height:1.1;">Borholur</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:0.85rem;color:#374558;letter-spacing:0.1em;line-height:1.2;">myndun og mælingar</div>
         </div>
       </a>
-      <!-- Mobile hamburger -->
-      <button id="menu-btn" onclick="toggleMenu()" class="md:hidden" style="display:flex;flex-direction:column;gap:5px;padding:6px;background:transparent;border:none;cursor:pointer;" aria-label="Valmynd">
-        <span class="ham-line" style="display:block;width:22px;height:2px;background:#8A94A8;border-radius:2px;transition:transform 0.2s,opacity 0.2s;"></span>
-        <span class="ham-line" style="display:block;width:22px;height:2px;background:#8A94A8;border-radius:2px;transition:transform 0.2s,opacity 0.2s;"></span>
-        <span class="ham-line" style="display:block;width:22px;height:2px;background:#8A94A8;border-radius:2px;transition:transform 0.2s,opacity 0.2s;"></span>
-      </button>
-
-      <!-- Nav links -->
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#þjonusta" style="font-family:'Barlow',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:#8A94A8;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#8A94A8'" onfocus="this.style.color='#4A90D9'" onblur="this.style.color='#8A94A8'">Þjónusta</a>
-<a href="#verdskra" style="font-family:'Barlow',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:#8A94A8;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#8A94A8'" onfocus="this.style.color='#4A90D9'" onblur="this.style.color='#8A94A8'">Verðskrá</a>
+      <div class="flex items-center gap-8">
+        <a href="#þjonusta" style="font-family:'Barlow',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:#6A7A90;transition:color 0.2s;text-decoration:none;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#6A7A90'">Þjónusta</a>
         <a href="#hafasamband" class="btn-primary" style="padding:0.5rem 1.25rem;font-size:0.85rem;">Hafa samband</a>
-        <a href="index-light.html" title="Ljóst þema" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid rgba(74,144,217,0.3);color:#8A94A8;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='#4A90D9';this.style.borderColor='#4A90D9'" onmouseout="this.style.color='#8A94A8';this.style.borderColor='rgba(74,144,217,0.3)'">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.4"/><line x1="8" y1="1" x2="8" y2="3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="8" y1="13" x2="8" y2="15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="1" y1="8" x2="3" y2="8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="13" y1="8" x2="15" y2="8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="2.93" y1="2.93" x2="4.34" y2="4.34" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="11.66" y1="11.66" x2="13.07" y2="13.07" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="11.66" y1="4.34" x2="13.07" y2="2.93" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="2.93" y1="13.07" x2="4.34" y2="11.66" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        </a>
       </div>
     </div>
   </nav>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu" style="display:none;position:fixed;top:80px;left:0;right:0;z-index:49;background:rgba(13,20,32,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(45,108,192,0.2);padding:1.25rem 1.5rem;">
-    <div style="display:flex;flex-direction:column;gap:1.25rem;">
-      <a href="#þjonusta" onclick="toggleMenu()" style="font-family:'Barlow',sans-serif;font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;color:#8A94A8;text-decoration:none;">Þjónusta</a>
-      <a href="#verdskra" onclick="toggleMenu()" style="font-family:'Barlow',sans-serif;font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;color:#8A94A8;text-decoration:none;">Verðskrá</a>
-      <a href="#hafasamband" onclick="toggleMenu()" class="btn-primary" style="padding:0.6rem 1.25rem;font-size:0.85rem;text-align:center;">Hafa samband</a>
-      <a href="index-light.html" style="display:flex;align-items:center;gap:0.5rem;font-family:'Barlow',sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#8A94A8;text-decoration:none;">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.4"/><line x1="8" y1="1" x2="8" y2="3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="8" y1="13" x2="8" y2="15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="1" y1="8" x2="3" y2="8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="13" y1="8" x2="15" y2="8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="2.93" y1="2.93" x2="4.34" y2="4.34" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="11.66" y1="11.66" x2="13.07" y2="13.07" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="11.66" y1="4.34" x2="13.07" y2="2.93" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="2.93" y1="13.07" x2="4.34" y2="11.66" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        Ljóst þema
-      </a>
-    </div>
-  </div>
-  <script>
-    function toggleMenu() {
-      const m = document.getElementById('mobile-menu');
-      m.style.display = m.style.display === 'none' ? 'block' : 'none';
-    }
-  </script>
-
   <!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
-  <section class="relative min-h-screen flex items-center" style="background:linear-gradient(160deg,#0D1420 0%,#111827 40%,#1C2230 100%);">
-    <!-- Scan line animation -->
+  <section class="relative min-h-screen flex items-center" style="background:linear-gradient(160deg,#D8E8F8 0%,#E4EEF8 40%,#F2F5FA 100%);">
     <div class="scan-line" style="top:0;"></div>
 
-    <!-- Background depth circles -->
     <div class="absolute inset-0 flex items-center justify-end overflow-hidden pointer-events-none" style="right:-10%;">
-      <svg width="700" height="700" viewBox="0 0 700 700" style="opacity:0.06;">
+      <svg width="700" height="700" viewBox="0 0 700 700" style="opacity:0.12;">
         <circle cx="350" cy="350" r="320" fill="none" stroke="#4A90D9" stroke-width="1"/>
         <circle cx="350" cy="350" r="240" fill="none" stroke="#4A90D9" stroke-width="0.8"/>
         <circle cx="350" cy="350" r="160" fill="none" stroke="#E8803A" stroke-width="1" stroke-dasharray="6 4"/>
@@ -276,37 +216,35 @@
     <div class="relative max-w-6xl mx-auto px-6 pt-32 pb-24 z-10">
       <div class="max-w-2xl">
         <div class="section-label mb-6">Borholurannsóknir · Mælingar · Greiningar</div>
-        <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(3.5rem,8vw,6rem);line-height:0.95;letter-spacing:0.02em;color:#FFFFFF;">
+        <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(3.5rem,8vw,6rem);line-height:0.95;letter-spacing:0.02em;color:#0D1420;">
           SJÓN ER<br/>
           SÖGU<br/>
           RÍKARI
         </h1>
         <div class="rule mt-6 mb-6" style="width:120px;"></div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.25rem;color:#C0C8D8;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem;">Nákvæmar Borholu Mælingar</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.25rem;color:#374558;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem;">Nákvæmar Borholu Mælingar</div>
         <p class="section-sub mb-10" style="max-width:480px;">
           Við sérhæfum okkur í að mynda og hitastigsmæla borholur um allt Ísland.
           Fagleg greining og nákvæm gögn hjálpa þér að taka betri ákvarðanir.
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="#verdskra" class="btn-primary">
-            Reikna verð
+          <a href="#hafasamband" class="btn-primary">
+            Hafa samband
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="#hafasamband" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;color:#8A94A8;padding:0.75rem 2rem;border-radius:3px;border:1px solid #253048;transition:color 0.2s,border-color 0.2s;text-decoration:none;" onmouseover="this.style.color='#C0C8D8';this.style.borderColor='#3A6FA8'" onmouseout="this.style.color='#8A94A8';this.style.borderColor='#253048'">Hafa samband</a>
+          <a href="#þjonusta" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;color:#6A7A90;padding:0.75rem 2rem;border-radius:3px;border:1px solid #C0D0E0;transition:color 0.2s,border-color 0.2s;text-decoration:none;" onmouseover="this.style.color='#0D1420';this.style.borderColor='#4A90D9'" onmouseout="this.style.color='#6A7A90';this.style.borderColor='#C0D0E0'">Þjónusta</a>
         </div>
       </div>
-
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2" style="display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0.4;">
-      <div style="font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#4A5060;">Fletta niður</div>
-      <svg width="20" height="28" viewBox="0 0 20 28" fill="none"><rect x="1" y="1" width="18" height="26" rx="9" stroke="#4A5060" stroke-width="1.5"/><circle cx="10" cy="8" r="2.5" fill="#4A90D9"><animate attributeName="cy" values="8;18;8" dur="2s" repeatCount="indefinite"/></circle></svg>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2" style="display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0.5;">
+      <div style="font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#9AA8BE;">Fletta niður</div>
+      <svg width="20" height="28" viewBox="0 0 20 28" fill="none"><rect x="1" y="1" width="18" height="26" rx="9" stroke="#9AA8BE" stroke-width="1.5"/><circle cx="10" cy="8" r="2.5" fill="#4A90D9"><animate attributeName="cy" values="8;18;8" dur="2s" repeatCount="indefinite"/></circle></svg>
     </div>
   </section>
 
   <!-- ═══ SERVICES ══════════════════════════════════════════════════════════ -->
-  <section id="þjonusta" style="background:#111827;padding:7rem 0;">
+  <section id="þjonusta" style="background:#FFFFFF;padding:7rem 0;">
     <div class="max-w-6xl mx-auto px-6">
       <div class="reveal mb-16">
         <div class="section-label mb-3">Það sem við gerum</div>
@@ -327,32 +265,26 @@
               <polygon points="23,3 25,9 23,11 21,9" fill="#E8803A"/>
             </svg>
           </div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;color:#FFFFFF;letter-spacing:0.08em;margin-bottom:0.75rem;">BORHOLUMYNDUN</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;color:#0D1420;letter-spacing:0.08em;margin-bottom:0.75rem;">BORHOLUMYNDUN</div>
           <p class="section-sub" style="font-size:0.9rem;">Hitaþolin myndavél er lækkuð í borholuna og myndband vistað til greiningar. Fullkomið til að meta ástand fóðringa, staðsetja hrun eða aðskotahluti. Myndavélin þolir 100°C og kemst á 1000 metra dýpi.</p>
         </div>
 
         <div class="service-card">
           <div style="margin-bottom:1.25rem;">
             <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
-              <!-- U-handle -->
               <path d="M 14,11 L 14,7 Q 23,3 32,7 L 32,11" stroke="#4A90D9" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <!-- Reel outer ring -->
               <circle cx="23" cy="26" r="15" stroke="#4A90D9" stroke-width="1.5"/>
-              <!-- Wound cable — concentric rings -->
               <circle cx="23" cy="26" r="10" stroke="#2D6CC0" stroke-width="0.9" opacity="0.6"/>
               <circle cx="23" cy="26" r="6.5" stroke="#2D6CC0" stroke-width="0.9" opacity="0.6"/>
               <circle cx="23" cy="26" r="3" stroke="#4A90D9" stroke-width="1.1"/>
-              <!-- Center hub -->
               <circle cx="23" cy="26" r="1.5" fill="#E8803A"/>
-              <!-- Stand feet -->
               <line x1="14" y1="41" x2="10" y2="45" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/>
               <line x1="32" y1="41" x2="36" y2="45" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/>
-              <!-- Cable + probe -->
               <line x1="36" y1="30" x2="43" y2="39" stroke="#8A94A8" stroke-width="1.1"/>
               <rect x="41" y="38" width="4" height="7" rx="1.5" stroke="#E8803A" stroke-width="1.2"/>
             </svg>
           </div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;color:#FFFFFF;letter-spacing:0.08em;margin-bottom:0.75rem;">DÝPTARMÆLINGAR</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;color:#0D1420;letter-spacing:0.08em;margin-bottom:0.75rem;">DÝPTARMÆLINGAR</div>
           <p class="section-sub" style="font-size:0.9rem;">Nákvæmar mælingar á dýpt holunnar, staðsetning sprunga, vatnshæð, suður, minkanir fóðringa og margt fleira.</p>
         </div>
 
@@ -366,10 +298,8 @@
                   <stop offset="100%" stop-color="#E8803A"/>
                 </linearGradient>
               </defs>
-              <!-- Tape body — gradient border + faint fill -->
               <rect x="19" y="3" width="8" height="36" rx="1" stroke="url(#tapeHeat)" stroke-width="1.5" fill="none"/>
               <rect x="20.5" y="4.5" width="5" height="33" rx="0.5" fill="url(#tapeHeat)" opacity="0.15"/>
-              <!-- Major marks — colored by zone -->
               <line x1="12" y1="9"  x2="19" y2="9"  stroke="#4A90D9" stroke-width="1.4"/>
               <line x1="27" y1="9"  x2="34" y2="9"  stroke="#4A90D9" stroke-width="1.4"/>
               <line x1="14" y1="14" x2="19" y2="14" stroke="#4A90D9" stroke-width="0.9"/>
@@ -382,146 +312,58 @@
               <line x1="27" y1="29" x2="34" y2="29" stroke="#E8803A" stroke-width="1.4"/>
               <line x1="14" y1="34" x2="19" y2="34" stroke="#E8803A" stroke-width="0.9"/>
               <line x1="27" y1="34" x2="32" y2="34" stroke="#E8803A" stroke-width="0.9"/>
-              <!-- Probe/weight at bottom -->
               <polygon points="23,41 19,38 27,38" fill="#E8803A"/>
               <rect x="21" y="40" width="4" height="5" rx="1" fill="#E8803A" opacity="0.6"/>
             </svg>
           </div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;color:#FFFFFF;letter-spacing:0.08em;margin-bottom:0.75rem;">HITAMÆLINGAR</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;color:#0D1420;letter-spacing:0.08em;margin-bottom:0.75rem;">HITAMÆLINGAR</div>
           <p class="section-sub" style="font-size:0.9rem;">Hitastig holunar mælt. Hitastigull metinn út frá mælingum.</p>
         </div>
 
         <div class="service-card">
           <div style="margin-bottom:1.25rem;">
             <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
-              <!-- Outer border -->
               <rect x="2" y="2" width="42" height="42" stroke="#1A4B8C" stroke-width="0.8" opacity="0.5"/>
-              <!-- Horizontal grid lines -->
               <line x1="2" y1="12" x2="44" y2="12" stroke="#1A4B8C" stroke-width="0.5" opacity="0.4"/>
               <line x1="2" y1="22" x2="44" y2="22" stroke="#1A4B8C" stroke-width="0.5" opacity="0.4"/>
               <line x1="2" y1="32" x2="44" y2="32" stroke="#1A4B8C" stroke-width="0.5" opacity="0.4"/>
-              <!-- Center depth axis -->
               <line x1="22" y1="2" x2="22" y2="44" stroke="#4A90D9" stroke-width="1.3"/>
               <line x1="20" y1="12" x2="24" y2="12" stroke="#4A90D9" stroke-width="1.1"/>
               <line x1="20" y1="22" x2="24" y2="22" stroke="#4A90D9" stroke-width="1.1"/>
               <line x1="20" y1="32" x2="24" y2="32" stroke="#4A90D9" stroke-width="1.1"/>
-              <!-- Left track: fluid fill + gamma-ray style wavy curve -->
               <path d="M 2,20 C 6,20 5,25 9,25 C 13,25 8,31 12,31 L 12,44 L 2,44 Z" fill="rgba(74,144,217,0.18)" stroke="none"/>
-              <path d="M 2,5 C 9,5 6,11 12,11 C 18,11 8,16 14,16 C 20,16 7,21 14,21 C 19,21 8,27 13,27 C 18,27 7,33 12,33 C 16,33 8,39 13,39 C 17,39 9,43 13,43"
-                    stroke="#E8803A" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-              <!-- Right track: two overlapping curves + zone fill -->
+              <path d="M 2,5 C 9,5 6,11 12,11 C 18,11 8,16 14,16 C 20,16 7,21 14,21 C 19,21 8,27 13,27 C 18,27 7,33 12,33 C 16,33 8,39 13,39 C 17,39 9,43 13,43" stroke="#E8803A" stroke-width="1.4" fill="none" stroke-linecap="round"/>
               <path d="M 26,15 C 30,15 29,21 33,21 C 37,21 33,28 37,28 L 37,44 L 26,44 L 26,15 Z" fill="rgba(232,128,58,0.15)" stroke="none"/>
-              <path d="M 26,5 C 31,5 29,11 34,11 C 39,11 31,17 36,17 C 41,17 32,23 37,23 C 42,23 33,29 38,29 C 43,29 34,35 39,35 C 43,35 35,41 39,41"
-                    stroke="#4A90D9" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-              <path d="M 44,7 C 40,7 42,13 38,13 C 34,13 40,19 37,19 C 33,19 40,25 37,25 C 33,25 40,31 37,31 C 33,31 40,37 37,37 C 33,37 40,43 37,43"
-                    stroke="#2D6CC0" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.7"/>
+              <path d="M 26,5 C 31,5 29,11 34,11 C 39,11 31,17 36,17 C 41,17 32,23 37,23 C 42,23 33,29 38,29 C 43,29 34,35 39,35 C 43,35 35,41 39,41" stroke="#4A90D9" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M 44,7 C 40,7 42,13 38,13 C 34,13 40,19 37,19 C 33,19 40,25 37,25 C 33,25 40,31 37,31 C 33,31 40,37 37,37 C 33,37 40,43 37,43" stroke="#2D6CC0" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.7"/>
             </svg>
           </div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;color:#FFFFFF;letter-spacing:0.08em;margin-bottom:0.75rem;">SKÝRSLUGERÐ</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;color:#0D1420;letter-spacing:0.08em;margin-bottom:0.75rem;">SKÝRSLUGERÐ</div>
           <p class="section-sub" style="font-size:0.9rem;">Útgefin skýrsla og samantekt eftir hvert verk.</p>
         </div>
 
-      </div>
-    </div>
-  </section>
 
-  <!-- ═══ PRICE CALCULATOR ══════════════════════════════════════════════════ -->
-  <section id="verdskra" style="background:linear-gradient(180deg,#111827 0%,#0D1420 100%);padding:7rem 0;">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="reveal mb-16">
-        <div class="section-label mb-3">Áætlaður kostnaður</div>
-        <h2 class="section-title">REIKNIVÉL</h2>
-        <div class="rule mt-4" style="width:80px;"></div>
-        <p class="section-sub mt-4" style="max-width:520px;">Sláðu inn upplýsingar hér að neðan til að fá áætlað verð í myndun þinnar borholu. Enanlegt verð er samkvæmt tilboði eða samkomulagi.</p>
       </div>
 
-      <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-        <!-- Inputs -->
-        <div style="background:rgba(13,20,32,0.7);border:1px solid rgba(45,108,192,0.2);border-radius:8px;padding:2.5rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#4A90D9;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(45,108,192,0.15);">Upplýsingar um verkið</div>
-
-          <div class="flex flex-col gap-6">
-
-            <!-- Distance -->
-            <div>
-              <label class="calc-label" for="distance">Akstursfjarlægð frá Reykjavík</label>
-              <div style="position:relative;">
-                <input id="distance" type="number" class="calc-input" placeholder="0" min="0" step="1" oninput="calculate()" />
-                <div style="position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);font-family:'Barlow',sans-serif;font-size:0.8rem;color:#4A5060;pointer-events:none;">km</div>
-              </div>
-            </div>
-
-            <!-- Depth -->
-            <div>
-              <label class="calc-label" for="depth">Dýpt Borholu/myndunar</label>
-              <div style="position:relative;">
-                <input id="depth" type="number" class="calc-input" placeholder="0" min="0" step="1" oninput="calculate()" />
-                <div style="position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);font-family:'Barlow',sans-serif;font-size:0.8rem;color:#4A5060;pointer-events:none;">m</div>
-              </div>
-            </div>
-
-            <!-- Well type -->
-            <div>
-              <label class="calc-label" for="welltype">Tegund Borholu</label>
-              <select id="welltype" class="calc-input" onchange="calculate()">
-                <option value="fresh">Ferskvatn</option>
-                <option value="hot">Heitt vatn</option>
-              </select>
-            </div>
-
-            <!-- Accessibility -->
-            <div>
-              <label class="calc-label" for="access">Aðkoma</label>
-              <select id="access" class="calc-input" onchange="calculate()">
-                <option value="good">Góð — við þjóðveg</option>
-                <option value="fair">Meðal — fólksbílafært</option>
-                <option value="bad">Léleg — þarfnast jeppa</option>
-              </select>
-            </div>
-
+      <!-- Þjónusta á landsvísu -->
+      <div class="reveal mt-16 pt-12" style="border-top:1px solid rgba(45,108,192,0.12);">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+          <div style="flex-shrink:0;display:flex;justify-content:center;">
+            <img src="brand_assets/iceland-detailed-4th.svg" width="270" height="180" alt="Ísland" style="display:block;" />
+          </div>
+          <div>
+            <div class="section-label mb-3">Landið allt</div>
+            <h2 class="section-title">ÞJÓNUSTA Á LANDSVÍSU</h2>
+            <div class="rule mt-4" style="width:80px;"></div>
+            <p class="section-sub mt-6" style="max-width:540px;">Við þjónum viðskiptavinum um allt Ísland — engin staðsetning of langt í burtu.</p>
           </div>
         </div>
-
-        <!-- Results -->
-        <div style="display:flex;flex-direction:column;gap:1rem;">
-
-          <!-- Main price -->
-          <div style="background:linear-gradient(135deg,rgba(26,75,140,0.3) 0%,rgba(13,20,32,0.9) 100%);border:1px solid rgba(74,144,217,0.3);border-radius:8px;padding:2.5rem;flex:1;">
-            <div style="font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E8803A;margin-bottom:0.75rem;">Áætlað heildarverð</div>
-            <div id="total-price" class="price-display" style="font-size:clamp(2.5rem,5vw,3.5rem);margin-bottom:0.5rem;">— kr.</div>
-            <div style="font-size:0.8rem;color:#4A5060;">Án VSK · Áætlunarverð</div>
-          </div>
-
-          <p style="font-size:0.75rem;color:#3A4050;line-height:1.6;">* Þetta er eingöngu áætlun. Endanlegt verð getur breyst eftir frekari skoðun og samningum. Hafðu samband til að fá formlegt tilboð.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ ÞJÓNUSTA Á LANDSVÍSU ════════════════════════════════════════════ -->
-  <section style="background:linear-gradient(135deg,rgba(26,75,140,0.18) 0%,#0D1420 100%);padding:6rem 0;">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="reveal flex flex-col md:flex-row items-center gap-12">
-
-        <div style="flex-shrink:0;display:flex;justify-content:center;">
-          <img src="brand_assets/iceland-detailed-4th.svg" width="270" height="180" alt="Ísland" style="display:block;" />
-        </div>
-
-        <div>
-          <div class="section-label mb-3">Landið allt</div>
-          <h2 class="section-title">ÞJÓNUSTA Á LANDSVÍSU</h2>
-          <div class="rule mt-4" style="width:80px;"></div>
-          <p class="section-sub mt-6" style="max-width:540px;">Við þjónum viðskiptavinum um allt Ísland — engin staðsetning of langt í burtu.</p>
-        </div>
-
       </div>
     </div>
   </section>
 
   <!-- ═══ CONTACT ═══════════════════════════════════════════════════════════ -->
-  <section id="hafasamband" style="background:#1C2230;padding:7rem 0;">
+  <section id="hafasamband" style="background:#F2F5FA;padding:7rem 0;">
     <div class="max-w-6xl mx-auto px-6">
       <div class="reveal mb-16">
         <div class="section-label mb-3">Við erum tilbúin</div>
@@ -535,37 +377,36 @@
 
           <div class="flex flex-col gap-5">
             <div style="display:flex;align-items:flex-start;gap:1rem;">
-              <div style="width:36px;height:36px;border-radius:3px;background:rgba(45,108,192,0.15);border:1px solid rgba(45,108,192,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <div style="width:36px;height:36px;border-radius:3px;background:rgba(74,144,217,0.08);border:1px solid rgba(45,108,192,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4l6 5 6-5M2 4h12v9H2V4z" stroke="#4A90D9" stroke-width="1.3" stroke-linejoin="round"/></svg>
               </div>
               <div>
-                <div style="font-family:'Barlow',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#4A5060;margin-bottom:2px;">Netfang</div>
-                <a href="mailto:oddur@kann.is" style="font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:1rem;color:#C0C8D8;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#C0C8D8'">oddur@kann.is</a>
+                <div style="font-family:'Barlow',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#8090A8;margin-bottom:2px;">Netfang</div>
+                <a href="mailto:oddur@kann.is" style="font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:1rem;color:#374558;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#374558'">oddur@kann.is</a>
               </div>
             </div>
             <div style="display:flex;align-items:flex-start;gap:1rem;">
-              <div style="width:36px;height:36px;border-radius:3px;background:rgba(45,108,192,0.15);border:1px solid rgba(45,108,192,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <div style="width:36px;height:36px;border-radius:3px;background:rgba(74,144,217,0.08);border:1px solid rgba(45,108,192,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 2h3l1.5 3.5-2 1.5c.8 1.6 2 2.8 3.5 3.5L10.5 8.5 14 10v3c0 .6-.5 1-1 1C6 14 2 10 2 3c0-.5.5-1 1-1z" stroke="#4A90D9" stroke-width="1.3" stroke-linejoin="round"/></svg>
               </div>
               <div>
-                <div style="font-family:'Barlow',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#4A5060;margin-bottom:2px;">Sími</div>
-                <a href="tel:+3548664715" style="font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:1rem;color:#C0C8D8;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#C0C8D8'">+354 866 4715</a>
+                <div style="font-family:'Barlow',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#8090A8;margin-bottom:2px;">Sími</div>
+                <a href="tel:+3548664715" style="font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:1rem;color:#374558;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#374558'">+354 866 4715</a>
               </div>
             </div>
             <div style="display:flex;align-items:flex-start;gap:1rem;">
-              <div style="width:36px;height:36px;border-radius:3px;background:rgba(45,108,192,0.15);border:1px solid rgba(45,108,192,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <div style="width:36px;height:36px;border-radius:3px;background:rgba(74,144,217,0.08);border:1px solid rgba(45,108,192,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5C12.5 3.5 10.5 1.5 8 1.5z" stroke="#4A90D9" stroke-width="1.3"/><circle cx="8" cy="6" r="1.5" stroke="#4A90D9" stroke-width="1.3"/></svg>
               </div>
               <div>
-                <div style="font-family:'Barlow',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#4A5060;margin-bottom:2px;">Staðsetning</div>
-                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:1rem;color:#C0C8D8;">Reykjavík, Ísland</span>
+                <div style="font-family:'Barlow',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#8090A8;margin-bottom:2px;">Staðsetning</div>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:1rem;color:#374558;">Reykjavík, Ísland</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Contact form -->
-        <form action="https://formspree.io/f/xaqkknor" method="POST" style="background:rgba(13,20,32,0.7);border:1px solid rgba(45,108,192,0.18);border-radius:8px;padding:2.5rem;display:flex;flex-direction:column;gap:1.25rem;">
+        <form action="https://formspree.io/f/xaqkknor" method="POST" style="background:rgba(255,255,255,0.9);border:1px solid rgba(45,108,192,0.15);border-radius:8px;padding:2.5rem;display:flex;flex-direction:column;gap:1.25rem;">
           <div>
             <label class="calc-label" for="c-name">Nafn</label>
             <input id="c-name" name="name" type="text" class="calc-input" placeholder="Nafnið þitt" />
@@ -588,134 +429,31 @@
   </section>
 
   <!-- ═══ FOOTER ════════════════════════════════════════════════════════════ -->
-  <footer style="background:#0D1420;padding:3rem 0;border-top:1px solid rgba(45,108,192,0.1);">
+  <footer style="background:#E8EDF4;padding:3rem 0;border-top:1px solid rgba(45,108,192,0.1);">
     <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
       <div style="display:flex;align-items:center;gap:0.75rem;">
         <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <defs><pattern id="fh" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#253048" stroke-width="0.9"/></pattern></defs>
-          <g transform="translate(50,50)"><circle cx="0" cy="0" r="44" fill="url(#fh)" stroke="#2D6CC0" stroke-width="2.5"/><circle cx="0" cy="0" r="29" fill="none" stroke="#1A4B8C" stroke-width="1.5"/><circle cx="0" cy="0" r="14" fill="#0D1420" stroke="#4A90D9" stroke-width="2"/><polygon points="0,-44 5,-33 0,-29 -5,-33" fill="#E8803A"/><polygon points="0,44 5,33 0,29 -5,33" fill="#E8803A"/><polygon points="-44,0 -33,-5 -29,0 -33,5" fill="#E8803A"/><polygon points="44,0 33,-5 29,0 33,5" fill="#E8803A"/><circle cx="0" cy="0" r="5" fill="#E8803A"/><circle cx="0" cy="0" r="2" fill="#0D1420"/></g>
+          <defs><pattern id="fh" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#C8D4E8" stroke-width="0.9"/></pattern></defs>
+          <g transform="translate(50,50)"><circle cx="0" cy="0" r="44" fill="url(#fh)" stroke="#2D6CC0" stroke-width="2.5"/><circle cx="0" cy="0" r="29" fill="none" stroke="#1A4B8C" stroke-width="1.5"/><circle cx="0" cy="0" r="14" fill="#E8EDF4" stroke="#4A90D9" stroke-width="2"/><polygon points="0,-44 5,-33 0,-29 -5,-33" fill="#E8803A"/><polygon points="0,44 5,33 0,29 -5,33" fill="#E8803A"/><polygon points="-44,0 -33,-5 -29,0 -33,5" fill="#E8803A"/><polygon points="44,0 33,-5 29,0 33,5" fill="#E8803A"/><circle cx="0" cy="0" r="5" fill="#E8803A"/><circle cx="0" cy="0" r="2" fill="#E8EDF4"/></g>
         </svg>
         <div>
-          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#4A90D9;font-size:0.9rem;letter-spacing:0.1em;">BORHOLUMYNDUN</span>
-          <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#2A3040;letter-spacing:0.2em;text-transform:uppercase;">Borholurannsóknir</div>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#2D6CC0;font-size:0.9rem;letter-spacing:0.1em;">Borholur</span>
+          <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#8A98B0;letter-spacing:0.15em;">myndun og mælingar</div>
         </div>
       </div>
-      <div style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:#2A3040;text-align:center;">
+      <div style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:#8A98B0;text-align:center;">
         © 2025 Garður Holding ehf. · Öll réttindi áskilin
       </div>
       <div style="display:flex;gap:1.5rem;">
-        <a href="#þjonusta" style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#2A3040;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#2A3040'">Þjónusta</a>
-        <a href="#verdskra" style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#2A3040;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#2A3040'">Verð</a>
-        <a href="#hafasamband" style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#2A3040;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#2A3040'">Samband</a>
+        <a href="#þjonusta" style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#8A98B0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#8A98B0'">Þjónusta</a>
+        <a href="#hafasamband" style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#8A98B0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#8A98B0'">Samband</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // ── Price Calculator ─────────────────────────────────────────────────────
-    function fmt(n) {
-      return Math.round(n).toLocaleString('is-IS') + ' kr.';
-    }
-    function fmtH(h) {
-      if (isNaN(h) || h === 0) return '—';
-      const hrs = Math.floor(h);
-      const mins = Math.round((h - hrs) * 60);
-      if (hrs === 0) return mins + ' mín';
-      if (mins === 0) return hrs + ' klst.';
-      return hrs + 'k ' + mins + 'm';
-    }
-
-    function calculate() {
-      const distRaw  = parseFloat(document.getElementById('distance').value) || 0;
-      const depthRaw = parseFloat(document.getElementById('depth').value)    || 0;
-      const wType    = document.getElementById('welltype').value;
-      const access   = document.getElementById('access').value;
-
-      if (distRaw === 0 && depthRaw === 0) {
-        document.getElementById('total-price').textContent = '— kr.';
-        document.getElementById('breakdown').style.opacity = '0.4';
-        document.getElementById('t-drive').textContent = '—';
-        document.getElementById('t-well').textContent  = '—';
-        document.getElementById('t-access').textContent = '—';
-        return;
-      }
-
-      const totalDist  = distRaw * 2;                                    // km round trip
-      const driveTime  = totalDist / 80;                                 // hours @ 80 km/h
-
-      // Well time: doubled (down + back up) + 5-min stop every 50m (both ways)
-      const wellTravel = (depthRaw * 4.3 * 2) / 3600;
-      const wellStops  = (Math.floor(depthRaw / 50) * 5 * 2) / 60;
-      const wellTime   = wellTravel + wellStops;
-
-      const accessTime = access === 'good' ? 2 : access === 'fair' ? 3 : 4;
-      const workTime   = wellTime + accessTime;                           // "vinna við holu"
-
-      // Anything over 12 total hours rounds up to 16 minimum
-      const rawTotal      = driveTime + workTime;
-      const billableTotal = rawTotal > 12 ? Math.max(16, rawTotal) : rawTotal;
-      const billableWork  = billableTotal - driveTime;
-
-      // Driving rate drops to 7,800/hr when round-trip drive exceeds 9 hours
-      const longTrip     = driveTime > 9;
-      const driveRate    = longTrip ? 7800 : 13000;
-      const nonDriveRate = 13000;
-
-      const distCost      = totalDist * 144;
-      const driveTimeCost = driveTime * driveRate;
-      const workTimeCost  = billableWork * nonDriveRate;
-      const timeCost      = driveTimeCost + workTimeCost;
-
-      // Per diem: 39,700 kr/night when driving > 9 hrs
-      const nights      = longTrip ? Math.max(1, Math.ceil(billableTotal / 24)) : 0;
-      const perDiemCost = nights * 39700;
-
-      const fixedCost = 149000;
-      const hotCost   = wType === 'hot' ? 35000 : 0;
-
-      const total = distCost + timeCost + perDiemCost + fixedCost + hotCost;
-
-      // Update totals
-      document.getElementById('total-price').textContent = fmt(total);
-      document.getElementById('breakdown').style.opacity = '1';
-
-      // Breakdown lines
-      document.getElementById('b-km-dist').textContent  = totalDist.toLocaleString('is-IS');
-      document.getElementById('b-km').textContent       = fmt(distCost);
-      document.getElementById('b-hours').textContent    = billableTotal.toFixed(1).replace('.', ',');
-      document.getElementById('b-time').textContent     = fmt(timeCost);
-
-      const multRow = document.getElementById('b-mult-row');
-      if (wType === 'hot') {
-        multRow.style.display = 'flex';
-        document.getElementById('b-mult').textContent = '+' + fmt(hotCost);
-      } else {
-        multRow.style.display = 'none';
-      }
-
-      // Per diem row
-      const perDiemRow = document.getElementById('b-perdiem-row');
-      if (longTrip) {
-        perDiemRow.style.display = 'flex';
-        document.getElementById('b-perdiem').textContent = fmt(perDiemCost);
-        document.getElementById('b-perdiem-nights').textContent = nights;
-      } else {
-        perDiemRow.style.display = 'none';
-      }
-
-      // Time display
-      document.getElementById('t-drive').textContent  = fmtH(driveTime);
-      document.getElementById('t-well').textContent   = fmtH(workTime);
-      document.getElementById('t-access').textContent = fmtH(billableTotal);
-    }
-
-    // ── Scroll reveal ────────────────────────────────────────────────────────
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-        }
-      });
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));

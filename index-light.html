@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Borholumyndun — Borholurannsóknir á Íslandi</title>
+  <title>Borholur — Myndun og mælingar</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -187,46 +187,16 @@
           </g>
         </svg>
         <div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.5rem;color:#2D6CC0;letter-spacing:0.12em;line-height:1.1;">BORHOLU</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:1.5rem;color:#374558;letter-spacing:0.12em;line-height:1.1;">MYNDUN</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.5rem;color:#2D6CC0;letter-spacing:0.08em;line-height:1.1;">Borholur</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:0.85rem;color:#374558;letter-spacing:0.1em;line-height:1.2;">myndun og mælingar</div>
         </div>
       </a>
-      <!-- Mobile hamburger -->
-      <button id="menu-btn" onclick="toggleMenu()" class="md:hidden" style="display:flex;flex-direction:column;gap:5px;padding:6px;background:transparent;border:none;cursor:pointer;" aria-label="Valmynd">
-        <span style="display:block;width:22px;height:2px;background:#6A7A90;border-radius:2px;"></span>
-        <span style="display:block;width:22px;height:2px;background:#6A7A90;border-radius:2px;"></span>
-        <span style="display:block;width:22px;height:2px;background:#6A7A90;border-radius:2px;"></span>
-      </button>
-
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#þjonusta" style="font-family:'Barlow',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:#6A7A90;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#6A7A90'" onfocus="this.style.color='#4A90D9'" onblur="this.style.color='#6A7A90'">Þjónusta</a>
-<a href="#verdskra" style="font-family:'Barlow',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:#6A7A90;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#6A7A90'" onfocus="this.style.color='#4A90D9'" onblur="this.style.color='#6A7A90'">Verðskrá</a>
+      <div class="flex items-center gap-8">
+        <a href="#þjonusta" style="font-family:'Barlow',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:#6A7A90;transition:color 0.2s;text-decoration:none;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#6A7A90'">Þjónusta</a>
         <a href="#hafasamband" class="btn-primary" style="padding:0.5rem 1.25rem;font-size:0.85rem;">Hafa samband</a>
-        <a href="index.html" title="Dökkt þema" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid rgba(45,108,192,0.25);color:#6A7A90;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='#4A90D9';this.style.borderColor='#4A90D9'" onmouseout="this.style.color='#6A7A90';this.style.borderColor='rgba(45,108,192,0.25)'">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 10.5A6 6 0 0 1 5.5 2.5a6 6 0 1 0 8 8z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
       </div>
     </div>
   </nav>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu" style="display:none;position:fixed;top:80px;left:0;right:0;z-index:49;background:rgba(242,245,250,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(45,108,192,0.15);padding:1.25rem 1.5rem;">
-    <div style="display:flex;flex-direction:column;gap:1.25rem;">
-      <a href="#þjonusta" onclick="toggleMenu()" style="font-family:'Barlow',sans-serif;font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;color:#6A7A90;text-decoration:none;">Þjónusta</a>
-      <a href="#verdskra" onclick="toggleMenu()" style="font-family:'Barlow',sans-serif;font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;color:#6A7A90;text-decoration:none;">Verðskrá</a>
-      <a href="#hafasamband" onclick="toggleMenu()" class="btn-primary" style="padding:0.6rem 1.25rem;font-size:0.85rem;text-align:center;">Hafa samband</a>
-      <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;font-family:'Barlow',sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#6A7A90;text-decoration:none;">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 10.5A6 6 0 0 1 5.5 2.5a6 6 0 1 0 8 8z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Dökkt þema
-      </a>
-    </div>
-  </div>
-  <script>
-    function toggleMenu() {
-      const m = document.getElementById('mobile-menu');
-      m.style.display = m.style.display === 'none' ? 'block' : 'none';
-    }
-  </script>
 
   <!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
   <section class="relative min-h-screen flex items-center" style="background:linear-gradient(160deg,#D8E8F8 0%,#E4EEF8 40%,#F2F5FA 100%);">
@@ -258,11 +228,11 @@
           Fagleg greining og nákvæm gögn hjálpa þér að taka betri ákvarðanir.
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="#verdskra" class="btn-primary">
-            Reikna verð
+          <a href="#hafasamband" class="btn-primary">
+            Hafa samband
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="#hafasamband" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;color:#6A7A90;padding:0.75rem 2rem;border-radius:3px;border:1px solid #C0D0E0;transition:color 0.2s,border-color 0.2s;text-decoration:none;" onmouseover="this.style.color='#0D1420';this.style.borderColor='#4A90D9'" onmouseout="this.style.color='#6A7A90';this.style.borderColor='#C0D0E0'">Hafa samband</a>
+          <a href="#þjonusta" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;color:#6A7A90;padding:0.75rem 2rem;border-radius:3px;border:1px solid #C0D0E0;transition:color 0.2s,border-color 0.2s;text-decoration:none;" onmouseover="this.style.color='#0D1420';this.style.borderColor='#4A90D9'" onmouseout="this.style.color='#6A7A90';this.style.borderColor='#C0D0E0'">Þjónusta</a>
         </div>
       </div>
     </div>
@@ -374,83 +344,19 @@
 
 
       </div>
-    </div>
-  </section>
 
-  <!-- ═══ PRICE CALCULATOR ══════════════════════════════════════════════════ -->
-  <section id="verdskra" style="background:linear-gradient(180deg,#FFFFFF 0%,#F2F5FA 100%);padding:7rem 0;">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="reveal mb-16">
-        <div class="section-label mb-3">Áætlaður kostnaður</div>
-        <h2 class="section-title">REIKNIVÉL</h2>
-        <div class="rule mt-4" style="width:80px;"></div>
-        <p class="section-sub mt-4" style="max-width:520px;">Sláðu inn upplýsingar hér að neðan til að fá áætlað verð í myndun þinnar borholu. Enanlegt verð er samkvæmt tilboði eða samkomulagi.</p>
-      </div>
-
-      <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-        <div style="background:rgba(255,255,255,0.9);border:1px solid rgba(45,108,192,0.15);border-radius:8px;padding:2.5rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#4A90D9;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(45,108,192,0.12);">Upplýsingar um verkið</div>
-
-          <div class="flex flex-col gap-6">
-            <div>
-              <label class="calc-label" for="distance">Akstursfjarlægð frá Reykjavík</label>
-              <div style="position:relative;">
-                <input id="distance" type="number" class="calc-input" placeholder="0" min="0" step="1" oninput="calculate()" />
-                <div style="position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);font-family:'Barlow',sans-serif;font-size:0.8rem;color:#9AA8BE;pointer-events:none;">km</div>
-              </div>
-            </div>
-            <div>
-              <label class="calc-label" for="depth">Dýpt Borholu/myndunar</label>
-              <div style="position:relative;">
-                <input id="depth" type="number" class="calc-input" placeholder="0" min="0" step="1" oninput="calculate()" />
-                <div style="position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);font-family:'Barlow',sans-serif;font-size:0.8rem;color:#9AA8BE;pointer-events:none;">m</div>
-              </div>
-            </div>
-            <div>
-              <label class="calc-label" for="welltype">Tegund Borholu</label>
-              <select id="welltype" class="calc-input" onchange="calculate()">
-                <option value="fresh">Ferskvatn</option>
-                <option value="hot">Heitt vatn</option>
-              </select>
-            </div>
-            <div>
-              <label class="calc-label" for="access">Aðkoma</label>
-              <select id="access" class="calc-input" onchange="calculate()">
-                <option value="good">Góð — við þjóðveg</option>
-                <option value="fair">Meðal — fólksbílafært</option>
-                <option value="bad">Léleg — þarfnast jeppa</option>
-              </select>
-            </div>
+      <!-- Þjónusta á landsvísu -->
+      <div class="reveal mt-16 pt-12" style="border-top:1px solid rgba(45,108,192,0.12);">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+          <div style="flex-shrink:0;display:flex;justify-content:center;">
+            <img src="brand_assets/iceland-detailed-4th.svg" width="270" height="180" alt="Ísland" style="display:block;" />
           </div>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:1rem;">
-          <div style="background:linear-gradient(135deg,rgba(74,144,217,0.07) 0%,rgba(248,252,255,1) 100%);border:1px solid rgba(74,144,217,0.25);border-radius:8px;padding:2.5rem;flex:1;">
-            <div style="font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#E8803A;margin-bottom:0.75rem;">Áætlað heildarverð</div>
-            <div id="total-price" class="price-display" style="font-size:clamp(2.5rem,5vw,3.5rem);margin-bottom:0.5rem;">— kr.</div>
-            <div style="font-size:0.8rem;color:#8090A8;">Án VSK · Áætlunarverð</div>
+          <div>
+            <div class="section-label mb-3">Landið allt</div>
+            <h2 class="section-title">ÞJÓNUSTA Á LANDSVÍSU</h2>
+            <div class="rule mt-4" style="width:80px;"></div>
+            <p class="section-sub mt-6" style="max-width:540px;">Við þjónum viðskiptavinum um allt Ísland — engin staðsetning of langt í burtu.</p>
           </div>
-
-          <p style="font-size:0.75rem;color:#9AA8BE;line-height:1.6;">* Þetta er eingöngu áætlun. Endanlegt verð getur breyst eftir frekari skoðun og samningum. Hafðu samband til að fá formlegt tilboð.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ ÞJÓNUSTA Á LANDSVÍSU ════════════════════════════════════════════ -->
-  <section style="background:linear-gradient(135deg,rgba(74,144,217,0.07) 0%,#F2F5FA 100%);padding:6rem 0;">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="reveal flex flex-col md:flex-row items-center gap-12">
-        <div style="flex-shrink:0;display:flex;justify-content:center;">
-          <img src="brand_assets/iceland-detailed-4th.svg" width="270" height="180" alt="Ísland" style="display:block;" />
-        </div>
-        <div>
-          <div class="section-label mb-3">Landið allt</div>
-          <h2 class="section-title">ÞJÓNUSTA Á LANDSVÍSU</h2>
-          <div class="rule mt-4" style="width:80px;"></div>
-          <p class="section-sub mt-6" style="max-width:540px;">Við þjónum viðskiptavinum um allt Ísland — engin staðsetning of langt í burtu.</p>
         </div>
       </div>
     </div>
@@ -531,8 +437,8 @@
           <g transform="translate(50,50)"><circle cx="0" cy="0" r="44" fill="url(#fh)" stroke="#2D6CC0" stroke-width="2.5"/><circle cx="0" cy="0" r="29" fill="none" stroke="#1A4B8C" stroke-width="1.5"/><circle cx="0" cy="0" r="14" fill="#E8EDF4" stroke="#4A90D9" stroke-width="2"/><polygon points="0,-44 5,-33 0,-29 -5,-33" fill="#E8803A"/><polygon points="0,44 5,33 0,29 -5,33" fill="#E8803A"/><polygon points="-44,0 -33,-5 -29,0 -33,5" fill="#E8803A"/><polygon points="44,0 33,-5 29,0 33,5" fill="#E8803A"/><circle cx="0" cy="0" r="5" fill="#E8803A"/><circle cx="0" cy="0" r="2" fill="#E8EDF4"/></g>
         </svg>
         <div>
-          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#2D6CC0;font-size:0.9rem;letter-spacing:0.1em;">BORHOLUMYNDUN</span>
-          <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#8A98B0;letter-spacing:0.2em;text-transform:uppercase;">Borholurannsóknir</div>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#2D6CC0;font-size:0.9rem;letter-spacing:0.1em;">Borholur</span>
+          <div style="font-family:'Barlow',sans-serif;font-size:0.7rem;color:#8A98B0;letter-spacing:0.15em;">myndun og mælingar</div>
         </div>
       </div>
       <div style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:#8A98B0;text-align:center;">
@@ -540,53 +446,12 @@
       </div>
       <div style="display:flex;gap:1.5rem;">
         <a href="#þjonusta" style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#8A98B0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#8A98B0'">Þjónusta</a>
-        <a href="#verdskra" style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#8A98B0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#8A98B0'">Verð</a>
         <a href="#hafasamband" style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#8A98B0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color='#8A98B0'">Samband</a>
       </div>
     </div>
   </footer>
 
   <script>
-    function fmt(n) {
-      return Math.round(n).toLocaleString('is-IS') + ' kr.';
-    }
-    function calculate() {
-      const distRaw  = parseFloat(document.getElementById('distance').value) || 0;
-      const depthRaw = parseFloat(document.getElementById('depth').value)    || 0;
-      const wType    = document.getElementById('welltype').value;
-      const access   = document.getElementById('access').value;
-
-      if (distRaw === 0 && depthRaw === 0) {
-        document.getElementById('total-price').textContent = '— kr.';
-        return;
-      }
-
-      const totalDist  = distRaw * 2;
-      const driveTime  = totalDist / 80;
-      const wellTravel = (depthRaw * 4.3 * 2) / 3600;
-      const wellStops  = (Math.floor(depthRaw / 50) * 5 * 2) / 60;
-      const wellTime   = wellTravel + wellStops;
-      const accessTime = access === 'good' ? 2 : access === 'fair' ? 3 : 4;
-      const workTime   = wellTime + accessTime;
-      const rawTotal      = driveTime + workTime;
-      const billableTotal = rawTotal > 12 ? Math.max(16, rawTotal) : rawTotal;
-      const billableWork  = billableTotal - driveTime;
-      const longTrip     = driveTime > 9;
-      const driveRate    = longTrip ? 7800 : 13000;
-      const nonDriveRate = 13000;
-      const distCost      = totalDist * 144;
-      const driveTimeCost = driveTime * driveRate;
-      const workTimeCost  = billableWork * nonDriveRate;
-      const timeCost      = driveTimeCost + workTimeCost;
-      const nights      = longTrip ? Math.max(1, Math.ceil(billableTotal / 24)) : 0;
-      const perDiemCost = nights * 39700;
-      const fixedCost = 85000;
-      const hotCost   = wType === 'hot' ? 35000 : 0;
-      const total = distCost + timeCost + perDiemCost + fixedCost + hotCost;
-
-      document.getElementById('total-price').textContent = fmt(total);
-    }
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
