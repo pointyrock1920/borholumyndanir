@@ -189,6 +189,8 @@
       .pn-tab.active{background:var(--color-background-primary);border-color:var(--color-border-primary);color:var(--color-text-primary);font-weight:500}
       .sep{height:0.5px;background:var(--color-border-tertiary);margin:1rem 0}
       .hint{font-size:12px;color:var(--color-text-tertiary);margin-top:1rem}
+      .btn-clear{margin-top:0.75rem;padding:6px 14px;font-size:12px;font-family:'Barlow',sans-serif;letter-spacing:0.06em;text-transform:uppercase;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:transparent;color:var(--color-text-secondary);cursor:pointer;transition:border-color 0.2s,color 0.2s}
+      .btn-clear:hover{border-color:var(--color-border-primary);color:var(--color-text-primary)}
       </style>
       <h2 class="sr-only">EN 1092-1 Flange finder — enter known dimensions to identify DN size and pressure class</h2>
       <div class="finder">
@@ -231,6 +233,7 @@
           <input type="number" id="fC1" placeholder="e.g. 24" oninput="search()" style="max-width:200px">
           <div class="unit">mm — plate / weld-neck</div>
         </div>
+        <button class="btn-clear" onclick="clearAll()">Clear all</button>
         <div class="sep"></div>
         <div class="results" id="results">
           <div class="empty"><i class="ti ti-circle-dashed" style="font-size:24px;display:block;margin-bottom:8px" aria-hidden="true"></i>Enter one or more dimensions above to find matching flanges</div>
@@ -372,6 +375,13 @@
           html+=`</div><div class="score-bar"><div class="score-fill" style="width:${pct}%"></div></div></div>`;
         });
         res.innerHTML=html;
+      }
+      function clearAll(){
+        ['fD','fK','fL','fNo','fSize','fB1','fC1'].forEach(id=>document.getElementById(id).value='');
+        activePNs=new Set(PNS);
+        document.querySelectorAll('.pn-tab').forEach(t=>t.classList.remove('active'));
+        document.querySelector('.pn-tab').classList.add('active');
+        search();
       }
       buildTabs();
       </script>
